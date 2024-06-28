@@ -1,0 +1,13 @@
+api_host: pvetest
+api_user: root@pam
+api_password: 'qwerty123'
+node: pvetest
+vm_clone: ubuntu-2204-template
+vm_nameserver: 8.8.8.8
+vm_gateway: 192.168.48.1
+proxmox_api_url: https://192.168.48.254:8006/api2/json
+
+vms:
+ - { vmid: 100, name: "server100.ubg.local", ciuser: "root", cipassword: 112233, ipconfig0: ip=192.168.48.100/24 }
+ - { vmid: 101, name: "server101.ubg.local", ciuser: "root", cipassword: 112233, ipconfig0: ip=192.168.48.101/24 }
+ - { vmid: 102, name: "server102.ubg.local", ciuser: "root", cipassword: 112233, ipconfig0: ip=192.168.48.102/24 }

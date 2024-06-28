@@ -1,0 +1,14 @@
+---
+- name: Playbook Proxmox (Edit)
+  hosts: localhost
+  gather_facts: no
+  tasks:
+  - name: include variable
+    include_vars: var_{{ lokasi }}.yml
+
+  - name: Variable untuk edit container di Setiap Lokasi
+    set_fact:
+       container: "pve_{{ lokasi }}"
+
+  - name: Task untuk edit container
+    include_tasks: edit_ct.yml

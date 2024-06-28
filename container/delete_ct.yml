@@ -1,0 +1,11 @@
+- name: Menghapus container
+  community.general.proxmox:
+    api_host: "{{ api_host }}"
+    api_user: "{{ api_user }}"
+    api_password: "{{ api_password }}"
+    node: "{{ node }}"
+    vmid: "{{ container_item.vmid }}"
+    state: absent
+  with_items: "{{ containers }}"
+  loop_control:
+    loop_var: container_item

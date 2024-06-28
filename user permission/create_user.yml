@@ -1,0 +1,21 @@
+- name: Membuat User
+  ansible.builtin.command: >
+    ansible pvetest -m command -a "pvesh create /access/users
+    -userid "{{ user_item.userid }}"
+    -password "{{ user_item.password }}"
+    -firstname "{{ user_item.firstname }}"
+    -lastname "{{ user_item.lastname }}"
+    -comment '{{ user_item.comment }}'"
+  with_items: "{{user_permissions}}"
+  loop_control:
+    loop_var: user_item
+
+- name: Membuat Permission
+  ansible.builtin.command: >
+    ansible pvetest -m command -a "pvesh set /access/acl
+    -path "{{ user_item.path }}"
+    -users "{{ user_item.userid }}"
+    -roles "{{ user_item.role }}""
+  with_items: "{{user_permissions}}"
+  loop_control:
+    loop_var: user_item

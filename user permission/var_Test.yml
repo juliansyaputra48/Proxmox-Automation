@@ -1,0 +1,10 @@
+user_permissions:
+   - { userid: jul@pve, password: "12345678", firstname: "julian", lastname: "syaputra", comment: "Ilkom 2019", path: "/vms/111", role: "PVEVMUser"  }
+   - { userid: juna@pve, password: "12345678", firstname: "arjun", lastname: "delli", comment: "RPL 2019", path: "/vms/112", role: "PVEVMAdmin"  }
+   - { userid: aul@pve, password: "12345678", firstname: "rokyal", lastname: "aini", comment: "TI 2019", path: "/vms/113", role: "PVEVMUser"  }
+
+
+edit:
+   - { userid: jul@pve, new_password: "julian" }
+   - { userid: juna@pve, new_password: "arjun" }
+   - { userid: aul@pve, new_password: "rokyal" }

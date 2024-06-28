@@ -1,0 +1,14 @@
+---
+- name: Playbook Virtual Mesin Update
+  hosts: localhost
+  gather_facts: no
+  tasks:
+  - name: include variable
+    include_vars: var_{{ lokasi }}.yml
+
+  - name: Variable untuk Virtual Mesin di Setiap Lokasi
+    set_fact:
+       vm: "pve_{{ lokasi }}"
+
+  - name: Task untuk Update Virtual Mesin
+    include_tasks: edit_vm.yml

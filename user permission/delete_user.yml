@@ -1,0 +1,16 @@
+- name: Menghapus Permission
+  ansible.builtin.command: >
+    ansible pvetest -m command -a "pvesh set /access/acl -delete
+    -path "{{ user_item.path }}"
+    -users "{{ user_item.userid }}"
+    -roles "{{ user_item.role }}""
+  with_items: "{{user_permissions}}"
+  loop_control:
+    loop_var: user_item
+
+- name: Menghapus User
+  ansible.builtin.command: >
+    ansible pvetest -m command -a "pvesh delete /access/users/'{{ user_item.userid }}'"
+  with_items: "{{user_permissions}}"
+  loop_control:
+    loop_var: user_item

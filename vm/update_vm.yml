@@ -1,0 +1,32 @@
+- name: Get CSRF Token
+  ansible.builtin.uri:
+    url: "{{ proxmox_api_url }}/access/ticket"
+    method: POST
+    user: "{{ api_user }}"
+    password: "{{ api_password }}"
+    validate_certs: no  # Disable SSL verification
+    body_format: json
+    body:
+      username: "{{ api_user }}"
+      password: "{{ api_password }}"
+  register: csrf_token_result
+  delegate_to: localhost
+
+- name: Update Virtual Mesin Configuration
+  ansible.builtin.uri:
+    url: "{{ proxmox_api_url }}/nodes/{{ node }}/qemu/{{ vmesin_item.vmid }}/config"
+    method: PUT
+    headers:
+      Cookie: PVEAuthCookie={{ csrf_token_result.json.data.ticket }}
+      CSRFPreventionToken: "{{ csrf_token_result.json.data.CSRFPreventionToken }}"
+    validate_certs: no  # Disable SSL verification
+    body_format: json
+    body:
+      memory: 1024  # Update memory to 1024 MB
+      cores: 2      # Update CPU cores to 2
+      description: "Updated virtual mesin description"
+  register: api_response
+  delegate_to: localhost
+  with_items: "{{ vms }}"
+  loop_control:
+    loop_var: vmesin_item

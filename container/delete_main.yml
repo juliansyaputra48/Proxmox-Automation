@@ -1,0 +1,15 @@
+---
+- name: Playbook Proxmox (Delete)
+  hosts: localhost
+  gather_facts: no
+  tasks:
+  - name: include variable
+    include_vars: var_{{ lokasi }}.yml
+
+  - name: Variable untuk container di Setiap Lokasi
+    set_fact:
+       container: "pve_{{ lokasi }}"
+
+  - name: Task untuk container
+    include_tasks: delete_container.yml
+    with_items: "{{ groups[container] }}"

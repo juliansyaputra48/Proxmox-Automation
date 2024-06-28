@@ -1,0 +1,9 @@
+[proxmox:children]
+pve_Test
+pve_Production
+
+[pve_Test]
+pvetest ansible_host=192.168.48.254
+
+[pve_Production]
+pvepro ansible_host=192.168.65.254

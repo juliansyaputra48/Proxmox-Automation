@@ -1,0 +1,14 @@
+---
+- name: Add User dan Permission
+  hosts: localhost
+  gather_facts: no
+  tasks:
+  - name: include variable
+    include_vars: var_{{ lokasi }}.yml
+
+  - name: Variable untuk user & permission di Setiap Lokasi
+    set_fact:
+       user_permission: "pve_{{ lokasi }}"
+
+  - name: Task untuk user dan permission
+    include_tasks: create_user.yml

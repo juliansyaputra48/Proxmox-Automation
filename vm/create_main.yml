@@ -1,0 +1,14 @@
+---
+- name: Playbook VM (Create)
+  hosts: localhost
+  gather_facts: no
+  tasks:
+  - name: include variable
+    include_vars: var_{{ lokasi }}.yml
+
+  - name: Variable untuk VM di Setiap Lokasi
+    set_fact:
+       vm: "pve_{{ lokasi }}"
+
+  - name: Task untuk VM
+    include_tasks: create_vm.yml

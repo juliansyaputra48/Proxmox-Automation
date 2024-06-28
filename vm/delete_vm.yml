@@ -1,0 +1,11 @@
+- name: Menghapus Virtual Mesin
+  proxmox_kvm:
+    api_host: "{{ api_host }}"
+    api_user: "{{ api_user }}"
+    api_password: "{{ api_password }}"
+    node: "{{ node }}"
+    name: "{{ vmesin_item.name }}"
+    state: absent
+  with_items: "{{ vms }}"
+  loop_control:
+    loop_var: vmesin_item

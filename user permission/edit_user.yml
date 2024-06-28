@@ -1,0 +1,8 @@
+- name: reset password user
+  ansible.builtin.command: >
+    ansible pvetest -m command -a "pvesh set /access/password
+    --userid "{{ user_item.userid }}"
+    --password "{{ user_item.new_password }}""
+  with_items: "{{ edit }}"
+  loop_control:
+    loop_var: user_item

@@ -1,0 +1,15 @@
+api_host: pvetest
+api_user: root@pam
+api_password: 'qwerty123'
+node: pvetest
+proxmox_api_url: "https://192.168.48.254:8006/api2/json"
+ct_src: ~/centos-8-default_20191016_amd64.tar.xz
+ct_ostemplate: centos-8-default_20191016_amd64.tar.xz
+ct_nameserver: 8.8.8.8
+ct_searchdomain: "ubg.local"
+ct_gateway: 192.168.48.1
+
+containers:
+  - { vmid: 111, hostname: "server111.ubg.local", ctpassword: "12345678", ip_address: 192.168.48.111/24 }
+  - { vmid: 112, hostname: "server112.ubg.local", ctpassword: "12345678", ip_address: 192.168.48.112/24 }
+  - { vmid: 113, hostname: "server113.ubg.local", ctpassword: "12345678", ip_address: 192.168.48.113/24 }
